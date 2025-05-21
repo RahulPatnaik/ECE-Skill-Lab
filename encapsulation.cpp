@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cstring>
 
+using namespace std;
+
 class Enemy; // Forward declaration
 
 class Player {
@@ -12,11 +14,14 @@ private:
 public:
     // Setters
     void setName(const char* newName) {
-        std::strncpy(name, newName, sizeof(name));
+        strncpy(name, newName, sizeof(name));
     }
 
     void setHealth(int h) {
-        health = h;
+        if (h>200)
+            health = 200;
+        else
+            health = h;
     }
 
     void setAttackPower(int power) {
@@ -49,7 +54,7 @@ private:
 public:
     // Setters
     void setName(const char* newName) {
-        std::strncpy(name, newName, sizeof(name));
+        strncpy(name, newName, sizeof(name));
     }
 
     void setHealth(int h) {
@@ -101,7 +106,7 @@ public:
 
 // Define Player's attack function
 void Player::attack(Enemy& enemy) {
-    std::cout << getName() << " attacks " << enemy.getName() << " for " << getAttackPower() << " damage!" << std::endl;
+    cout << getName() << " attacks " << enemy.getName() << " for " << getAttackPower() << " damage!" << endl;
     enemy.takeDamage(getAttackPower());
 }
 
@@ -121,7 +126,7 @@ int main() {
     player.attack(enemy);
 
     // Output the result
-    std::cout << "Enemy health: " << enemy.getHealth() << std::endl;
+    cout << "Enemy health: " << enemy.getHealth() << endl;
 
     return 0;
 }
