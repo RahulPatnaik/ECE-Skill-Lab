@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cstring>
 
+using namespace std;
+
 // Base class Character
 class Character {
 protected:
@@ -11,7 +13,7 @@ protected:
 public:
     // Setters
     void setName(const char* newName) {
-        std::strncpy(name, newName, sizeof(name));
+        strncpy(name, newName, sizeof(name));
         name[sizeof(name)-1] = '\0'; // Ensure null termination
     }
 
@@ -44,8 +46,8 @@ public:
 
     // Virtual method for attack (can be overridden)
     virtual void attack(Character& target) {
-        std::cout << name << " attacks " << target.getName()
-                  << " for " << attackPower << " damage!" << std::endl;
+        cout << name << " attacks " << target.getName()
+                  << " for " << attackPower << " damage!" << endl;
         target.takeDamage(attackPower);
     }
 };
@@ -57,8 +59,8 @@ public:
 
     // Override attack if needed
     void attack(Character& target) override {
-        std::cout << "Player " << name << " attacks " << target.getName()
-                  << " with power " << attackPower << "!" << std::endl;
+        cout << "Player " << name << " attacks " << target.getName()
+                  << " with power " << attackPower << "!" << endl;
         target.takeDamage(attackPower);
     }
 };
@@ -70,8 +72,8 @@ public:
 
     // Override attack if needed
     void attack(Character& target) override {
-        std::cout << "Enemy " << name << " attacks " << target.getName()
-                  << " with power " << attackPower << "!" << std::endl;
+        cout << "Enemy " << name << " attacks " << target.getName()
+                  << " with power " << attackPower << "!" << endl;
         target.takeDamage(attackPower);
     }
 };
@@ -89,11 +91,11 @@ int main() {
 
     // Player attacks Enemy
     player.attack(enemy);
-    std::cout << enemy.getName() << "'s health after attack: " << enemy.getHealth() << std::endl;
+    cout << enemy.getName() << "'s health after attack: " << enemy.getHealth() << endl;
 
     // Enemy attacks Player back
     enemy.attack(player);
-    std::cout << player.getName() << "'s health after attack: " << player.getHealth() << std::endl;
+    cout << player.getName() << "'s health after attack: " << player.getHealth() << endl;
 
     return 0;
 }
